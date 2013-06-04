@@ -26,11 +26,13 @@ var coffer = (function () {
   };
   
   create = function (someJson) {
-    var extract; 
+    var extract, data;
+    
+    data = (Object.prototype.toString.call(someJson) === "[object Array]") ? someJson : [someJson];
 
     extract = function (accessor, def) {
       var keysToTry = accessor.split('.'), 
-          currentValue = someJson;
+          currentValue = data[0];
           
       for (var i = 0, len = keysToTry.length; (i < len) && (currentValue !== undefined); (i+=1)) {
         currentValue = currentValue[keysToTry[i]];

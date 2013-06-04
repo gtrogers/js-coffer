@@ -38,4 +38,11 @@ describe("jsCoffer", function () {
     
     expect(myCoffer.extract('one.two.five', 'cats')).toBe('cats');
   });
+  
+  it("should be pragmatic about arrays - just take the first entry on extraction be smart later with queries", function () {
+    myCoffer = coffer.create([{"a": "b"}, {"c": "d"}]);
+    
+    expect(myCoffer.extract('a')).toBe('b');
+    expect(myCoffer.extract('c')).toBe(undefined);
+  });
 });
